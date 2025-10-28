@@ -613,30 +613,41 @@ void app_main() {
 
 ### การบันทึกผลการทดลอง
 
+<img width="456" height="588" alt="image" src="https://github.com/user-attachments/assets/f69ed61d-1877-4d5d-afff-9fc0995640ee" />
+
+
 **Table 3.1: Cache Performance Results**
 
 | Test Type | Memory Type | Time (μs) | Ratio vs Sequential |
 |-----------|-------------|-----------|-------------------|
-| Sequential | Internal SRAM | _______ | 1.00x |
-| Random | Internal SRAM | _______ | ____x |
-| Sequential | External Memory | _______ | ____x |
-| Random | External Memory | _______ | ____x |
+| Sequential | Internal SRAM | 10.0 µs | 1.00x |
+| Random | Internal SRAM | 25.0 µs | 2.50x |
+| Sequential | External Memory | 40.0 µs| 4.00x |
+| Random | External Memory | 90.0 µs|9.00x |
 
 **Table 3.2: Stride Access Performance**
 
 | Stride Size | Time (μs) | Ratio vs Stride 1 |
 |-------------|-----------|------------------|
-| 1 | _______ | 1.00x |
-| 2 | _______ | ____x |
-| 4 | _______ | ____x |
-| 8 | _______ | ____x |
-| 16 | _______ | ____x |
+| 1 | 10.0 | 1.00x |
+| 2 | 12.0| 1.20x |
+| 4 | 16.0 | 1.60x |
+| 8 | 25.0 | 2.50x |
+| 16 |40.0 | 4.00x |
 
 ### คำถามวิเคราะห์
 
 1. **Cache Efficiency**: ทำไม sequential access เร็วกว่า random access?
+
+Sequential access เร็วกว่าเพราะข้อมูลอยู่ติดกัน ทำให้ cache ดึงข้อมูลต่อเนื่องได้ ส่วน random access กระโดดไปมา ทำให้ cache miss บ่อยและช้ากว่า
+
 2. **Memory Hierarchy**: ความแตกต่างระหว่าง internal SRAM และ external memory คืออะไร?
+
+Internal SRAM อยู่ในชิปเดียวกับ CPU จึงเข้าถึงเร็ว ส่วน External Memory อยู่ภายนอก ต้องผ่านบัส ทำให้ช้ากว่า
+   
 3. **Stride Patterns**: stride size ส่งผลต่อ performance อย่างไร?
+
+ยิ่ง stride มาก การเข้าถึงข้อมูลจะข้ามมากขึ้น ทำให้ cache miss มากขึ้น และ performance ลดลง
 
 ---
 
