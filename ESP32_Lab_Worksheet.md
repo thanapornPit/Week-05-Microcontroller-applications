@@ -385,6 +385,8 @@ Memory analysis complete!
 ```
 
 ### การบันทึกผลการทดลอง 
+<img width="517" height="526" alt="image" src="https://github.com/user-attachments/assets/2bd6cfe9-797d-4646-9183-df7520eefe71" />
+
 
 **Table 2.1: Memory Address Analysis**
 
@@ -406,8 +408,27 @@ Memory analysis complete!
 ### คำถามวิเคราะห์ (ง่าย)
 
 1. **Memory Types**: SRAM และ Flash Memory ใช้เก็บข้อมูลประเภทไหน?
+
+ตอบ SRAM → เก็บ ตัวแปร, stack, heap (ข้อมูลชั่วคราว ขณะโปรแกรมทำงาน)
+
+Flash Memory → เก็บ โปรแกรม (code) และ ข้อมูลถาวร (ไม่หายเมื่อปิดเครื่อง)
+
 2. **Address Ranges**: ตัวแปรแต่ละประเภทอยู่ใน address range ไหน?
+
+ตอบ SRAM (Data RAM) → 0x3FF...
+
+Flash Memory → 0x3F4...
+
+IRAM (Instruction RAM) → 0x4008... (โค้ดที่ต้องรันเร็ว)
+
+
 3. **Memory Usage**: ESP32 มี memory ทั้งหมดเท่าไร และใช้ไปเท่าไร?
+
+ตอบ  ESP32 มี SRAM ~520 KB (ใช้จริงตอนนี้ ~380 KB)
+
+มี Flash 2 MB (ใช้แค่ ~163 KB = ประมาณ 8–9%)
+
+เหลือพื้นที่ว่างมากพอสำหรับโปรแกรมใหญ่ขึ้น
 
 ---
 
