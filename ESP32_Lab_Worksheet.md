@@ -386,6 +386,10 @@ Memory analysis complete!
 
 ### การบันทึกผลการทดลอง 
 
+
+<img width="517" height="526" alt="image" src="https://github.com/user-attachments/assets/e469f8dc-68da-4cb8-a6f7-72e4e530eaec" />
+
+
 **Table 2.1: Memory Address Analysis**
 
 | Memory Section | Variable/Function | Address (ที่แสดงออกมา) | Memory Type |
@@ -406,8 +410,28 @@ Memory analysis complete!
 ### คำถามวิเคราะห์ (ง่าย)
 
 1. **Memory Types**: SRAM และ Flash Memory ใช้เก็บข้อมูลประเภทไหน?
+
+ตอบ   SRAM  เก็บ ตัวแปร, stack, heap (ข้อมูลชั่วคราว ขณะโปรแกรมทำงาน)
+
+Flash Memory  เก็บ โปรแกรม (code) และ ข้อมูลถาวร (ไม่หายเมื่อปิดเครื่อง)
+
+
 2. **Address Ranges**: ตัวแปรแต่ละประเภทอยู่ใน address range ไหน?
+
+
+ตอบ SRAM (Data RAM) → 0x3FF...
+
+Flash Memory → 0x3F4...
+
+IRAM (Instruction RAM) → 0x4008... (โค้ดที่ต้องรันเร็ว)
+
+
 3. **Memory Usage**: ESP32 มี memory ทั้งหมดเท่าไร และใช้ไปเท่าไร?
+
+
+ตอบ SRAM ~520 KB (ใช้จริงตอนนี้ ~380 KB)
+
+มี Flash 2 MB (ใช้แค่ ~163 KB = ประมาณ 8–9%)
 
 ---
 
@@ -592,6 +616,9 @@ void app_main() {
 
 ### การบันทึกผลการทดลอง
 
+<img width="517" height="526" alt="image" src="https://github.com/user-attachments/assets/ca02a496-7601-4e46-a89b-9ceb9ffcaa06" />
+
+
 **Table 3.1: Cache Performance Results**
 
 | Test Type | Memory Type | Time (μs) | Ratio vs Sequential |
@@ -614,8 +641,20 @@ void app_main() {
 ### คำถามวิเคราะห์
 
 1. **Cache Efficiency**: ทำไม sequential access เร็วกว่า random access?
+
+
+
+
 2. **Memory Hierarchy**: ความแตกต่างระหว่าง internal SRAM และ external memory คืออะไร?
-3. **Stride Patterns**: stride size ส่งผลต่อ performance อย่างไร?
+
+
+ตอบ
+
+ 
+4. **Stride Patterns**: stride size ส่งผลต่อ performance อย่างไร?
+
+
+ตอบ
 
 ---
 
