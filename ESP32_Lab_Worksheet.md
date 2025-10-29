@@ -870,29 +870,40 @@ void app_main() {
 
 ### การบันทึกผลการทดลอง
 
+<img width="822" height="612" alt="image" src="https://github.com/user-attachments/assets/ebd27aab-b597-4bdb-82e6-5b1080120194" />
+
 **Table 4.1: Dual-Core Performance Summary**
 
 | Metric | Core 0 (PRO_CPU) | Core 1 (APP_CPU) |
 |--------|-------------------|-------------------|
-| Total Iterations | _______ | _______ |
-| Average Time per Iteration (μs) | _______ | _______ |
-| Total Execution Time (ms) | _______ | _______ |
-| Task Completion Rate | _______ | _______ |
+| Total Iterations | 100 000 | 100 000 |
+| Average Time per Iteration (μs) | 12.3| 12.0 |
+| Total Execution Time (ms) | 1230 | 1200 |
+| Task Completion Rate | 100% | 100% |
 
 **Table 4.2: Inter-Core Communication**
 
 | Metric | Value |
 |--------|-------|
-| Messages Sent | _______ |
-| Messages Received | _______ |
-| Average Latency (μs) | _______ |
-| Queue Overflow Count | _______ |
+| Messages Sent | 500 |
+| Messages Received | 500 |
+| Average Latency (μs) | 35 |
+| Queue Overflow Count | 0 |
 
 ### คำถามวิเคราะห์
 
 1. **Core Specialization**: จากผลการทดลอง core ไหนเหมาะกับงานประเภทใด?
+
+Core 0 เหมาะกับงานระบบหลัก (เช่น I/O, logging)   Core 1 เหมาะกับงานประมวลผลต่อเนื่อง เช่น computation หรือ sensor task 
+
+
 2. **Communication Overhead**: inter-core communication มี overhead เท่าไร?
+
+มี overhead ประมาณ 30–40 µs ต่อ message เพราะต้องสลับ context และ sync que
+
 3. **Load Balancing**: การกระจายงานระหว่าง cores มีประสิทธิภาพหรือไม่?
+
+การกระจายงานมีประสิทธิภาพดี ทั้ง 2 คอร์ทำงานครบ 100% และไม่มี queue overflow
 
 ---
 
